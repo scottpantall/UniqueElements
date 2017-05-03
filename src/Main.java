@@ -4,11 +4,7 @@
  */
 import java.io.*;
 import java.nio.file.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Main {
     public static void main (String[] args) throws IOException {
@@ -25,9 +21,22 @@ public class Main {
     
     public static void unique(String line) {
         String[] numbers = line.split(",");
-        Set<String> noDuplicates = new HashSet<String>(Arrays.asList(numbers));
+        ArrayList<String> uniques = new ArrayList<>();
         
-        noDuplicates.forEach(number -> System.out.print(number + ","));
-        System.out.printf("%n");
+        for(int i = 0; i < numbers.length; i++) {
+            if(!uniques.contains(numbers[i])) {
+                uniques.add(numbers[i]);
+            }
+        }
+        
+        for(String s : uniques) {
+            System.out.print(s);
+            if(uniques.indexOf(s) != uniques.size() - 1) {
+                System.out.print(",");
+            }
+            else {
+                System.out.printf("%n");
+            }
+        }
     }
 }
